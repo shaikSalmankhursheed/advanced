@@ -30,8 +30,9 @@ export default function Home() {
   const [lang, setLang] = useState<"en" | "ar">("en");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedProduct, setSelectedProduct] = useState<typeof siteConfigEn.products[0] | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<typeof siteConfigEn.products[0] | typeof siteConfigAr.products[0] | null>(null);
   const [inquiryName, setInquiryName] = useState("");
+  const [inquiryParts, setInquiryParts] = useState("");
   const [inquiryMessage, setInquiryMessage] = useState("");
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -96,10 +97,19 @@ export default function Home() {
   const handleInquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inquiryName) return;
+
+    const text = lang === "ar"
+      ? `مرحباً أدفانس تيك، أود طلب تسعيرة بالبيانات التالية:\n\n*الاسم:* ${inquiryName}\n*أرقام القطع:* ${inquiryParts || 'غير محدد'}\n*التفاصيل:* ${inquiryMessage || 'لا يوجد'}`
+      : `Hello ADVANCE TECH, I would like to request a quotation with the following details:\n\n*Name:* ${inquiryName}\n*Part Numbers:* ${inquiryParts || 'Not specified'}\n*Details:* ${inquiryMessage || 'None'}`;
+      
+    const encodedText = encodeURIComponent(text);
+    window.open(`https://wa.me/966560043676?text=${encodedText}`, "_blank");
+
     setInquirySubmitted(true);
     setTimeout(() => {
       setInquirySubmitted(false);
       setInquiryName("");
+      setInquiryParts("");
       setInquiryMessage("");
     }, 4000);
   };
@@ -636,6 +646,20 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Map Embed (Small Size) */}
+              <div className="rounded-xl overflow-hidden border border-zinc-200 shadow-sm h-[200px] w-full bg-zinc-50">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4948.937344223398!2d46.762354599999995!3d24.6339477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f070ac344b007%3A0x9d25acc17cb995ba!2z2LTYsdmD2Kkg2KfZhNiu2YrYp9ixINin2YTZhdiq2YLYr9mFINmE2YTYqtis2KfYsdip!5e1!3m2!1sen!2sin!4v1782052442741!5m2!1sen!2sin"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true}
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Google Maps Location"
+                ></iframe>
+              </div>
+
               <div className="flex gap-4 items-start">
                 <div className="w-10 h-10 rounded bg-zinc-100 flex items-center justify-center shrink-0 border border-zinc-200 text-red-650">
                   <Clock className="w-5 h-5" />
@@ -673,6 +697,8 @@ export default function Home() {
                     <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">{lang === "ar" ? "أرقام قطع الفلاتر" : "Filter Part Numbers"}</label>
                     <input
                       type="text"
+                      value={inquiryParts}
+                      onChange={(e) => setInquiryParts(e.target.value)}
                       placeholder={t.partNumbersPlaceholder}
                       className="w-full px-4 py-3 bg-white border border-zinc-300 rounded text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all"
                     />
