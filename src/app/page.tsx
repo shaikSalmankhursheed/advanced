@@ -36,6 +36,7 @@ export default function Home() {
   const [inquiryMessage, setInquiryMessage] = useState("");
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isMobileExpanded, setIsMobileExpanded] = useState(false);
 
   // Dynamic config based on chosen language
   const site = lang === "ar" ? siteConfigAr : siteConfigEn;
@@ -136,7 +137,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-zinc-500 text-[10px] px-2 py-0.5 bg-zinc-900 rounded border border-zinc-800">
-              {lang === "ar" ? "سجل تجاري مسجل" : "CR: Registered Supplier"}
+              {lang === "ar" ? "أكثر من 20 عاماً من الخبرة" : "20+ Years Trusted Experience"}
             </span>
             <span className="text-red-500 text-[10px] font-bold flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-red-650 animate-pulse"></span>
@@ -369,7 +370,7 @@ export default function Home() {
       </section>
 
       {/* Main Interactive Product Directory Section */}
-      <section id="catalog" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1">
+      <section id="catalog" className="py-24 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 min-h-[60vh]">
         
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
@@ -401,7 +402,7 @@ export default function Home() {
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery("")} 
-                  className={`absolute ${lang === "ar" ? "left-4" : "right-4"} top-1/2 -translate-y-1/2 text-zinc-450 hover:text-zinc-650`}
+                  className={`absolute ${lang === "ar" ? "left-4" : "right-4"} top-1/2 -translate-y-1/2 text-zinc-450 hover:text-zinc-650 cursor-pointer`}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -422,7 +423,7 @@ export default function Home() {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4.5 py-2.5 rounded-lg text-sm font-bold transition-all duration-150 ${
+                  className={`cursor-pointer px-4.5 py-2.5 rounded-lg text-sm font-bold transition-all duration-150 ${
                     selectedCategory === cat.id
                       ? "bg-red-650 text-white font-extrabold shadow-sm"
                       : "bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-900 border border-zinc-200"
@@ -454,10 +455,10 @@ export default function Home() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map((product, index) => (
             <div 
               key={product.id}
-              className="bg-white border border-zinc-200 hover:border-red-600/30 rounded-xl p-6 flex flex-col justify-between hover:shadow-xl hover:shadow-red-650/5 transition-all group duration-300"
+              className={`bg-white border border-zinc-200 hover:border-red-600/30 rounded-xl p-6 flex-col justify-between hover:shadow-xl hover:shadow-red-650/5 transition-all group duration-300 ${!isMobileExpanded && index >= 1 ? 'hidden md:flex' : 'flex'}`}
             >
               <div>
                 <div className="flex justify-between items-start gap-2 mb-3">
@@ -521,6 +522,22 @@ export default function Home() {
             </div>
           ))}
         </div>
+
+        {/* Mobile View More Toggle */}
+        {filteredProducts.length > 1 && (
+          <div className="mt-8 text-center md:hidden">
+            <Button 
+              onClick={() => setIsMobileExpanded(!isMobileExpanded)}
+              variant="outline" 
+              className="w-full font-bold border-zinc-300 text-zinc-700 h-12 rounded-lg hover:bg-zinc-50"
+            >
+              {isMobileExpanded 
+                ? (lang === 'ar' ? 'عرض أقل' : 'Show less') 
+                : (lang === 'ar' ? `عرض كل ${filteredProducts.length} الفلاتر` : `View all ${filteredProducts.length} filters`)
+              }
+            </Button>
+          </div>
+        )}
       </section>
 
       {/* About/Team Section (Layout matching Website About/Team Page Concept) */}
@@ -646,20 +663,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Map Embed (Small Size) */}
-              <div className="rounded-xl overflow-hidden border border-zinc-200 shadow-sm h-[200px] w-full bg-zinc-50">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4948.937344223398!2d46.762354599999995!3d24.6339477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f070ac344b007%3A0x9d25acc17cb995ba!2z2LTYsdmD2Kkg2KfZhNiu2YrYp9ixINin2YTZhdiq2YLYr9mFINmE2YTYqtis2KfYsdip!5e1!3m2!1sen!2sin!4v1782052442741!5m2!1sen!2sin"
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen={true}
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Google Maps Location"
-                ></iframe>
-              </div>
-
               <div className="flex gap-4 items-start">
                 <div className="w-10 h-10 rounded bg-zinc-100 flex items-center justify-center shrink-0 border border-zinc-200 text-red-650">
                   <Clock className="w-5 h-5" />
@@ -671,16 +674,15 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
           {/* Quick Inquiry Form */}
           <div className="lg:col-span-7">
-            <div className="bg-zinc-50 border border-zinc-200 p-8 rounded-xl">
+            <div className="bg-zinc-50 border border-zinc-200 p-8 rounded-xl h-full flex flex-col">
               <h3 className="text-xl font-bold text-zinc-950 mb-6">{t.requestQuote}</h3>
               
-              <form onSubmit={handleInquirySubmit} className="space-y-4">
+              <form onSubmit={handleInquirySubmit} className="space-y-4 flex flex-col flex-1">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">{t.yourName}</label>
@@ -705,16 +707,15 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div>
+                <div className="flex flex-col flex-1 min-h-[200px]">
                   <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">{t.specificationsLabel}</label>
                   <textarea
-                    rows={4}
                     value={inquiryMessage}
                     onChange={(e) => setInquiryMessage(e.target.value)}
                     placeholder={lang === "ar" 
                       ? "قدم تفاصيل حول المقاس أو الأبعاد أو الكمية المطلوبة. يمكنك أيضاً تحديد نوع السيارة هنا..."
                       : "Provide details about size, dimensions, or quantity. You can also specify the vehicle compatibility here..."}
-                    className="w-full px-4 py-3 bg-white border border-zinc-300 rounded text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-650 focus:border-transparent transition-all resize-none"
+                    className="w-full flex-1 px-4 py-3 bg-white border border-zinc-300 rounded text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-650 focus:border-transparent transition-all resize-none"
                   ></textarea>
                 </div>
 
@@ -735,6 +736,20 @@ export default function Home() {
             </div>
           </div>
 
+        </div>
+
+        {/* Map Embed (Full Width) */}
+        <div className="mt-16 rounded-xl overflow-hidden border border-zinc-200 shadow-sm h-[400px] w-full bg-zinc-50">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4948.937344223398!2d46.762354599999995!3d24.6339477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f070ac344b007%3A0x9d25acc17cb995ba!2z2LTYsdmD2Kkg2KfZhNiu2YrYp9ixINin2YTZhdiq2YLYr9mFINmE2YTYqtis2KfYsdip!5e1!3m2!1sen!2sin!4v1782052442741!5m2!1sen!2sin"
+            width="100%" 
+            height="100%" 
+            style={{ border: 0 }} 
+            allowFullScreen={true}
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Google Maps Location"
+          ></iframe>
         </div>
       </section>
 
