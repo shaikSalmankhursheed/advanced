@@ -88,10 +88,10 @@ export default function Home() {
   // Handle WhatsApp click
   const handleWhatsAppInquiry = (productName: string, partNumber: string) => {
     const text = lang === "ar" 
-      ? `مرحباً أدفانس تيك، أود الاستفسار عن الفلتر التالي:\n\n*الفلتر:* ${productName}\n*رقم القطعة:* ${partNumber}`
-      : `Hello ADVANCE TECH, I am interested in inquiring about the following filter:\n\n*Filter:* ${productName}\n*Part Number:* ${partNumber}`;
+      ? `مرحباً ${site.brandName}، أود الاستفسار عن الفلتر التالي:\n\n*الفلتر:* ${productName}\n*رقم القطعة:* ${partNumber}`
+      : `Hello ${site.brandName}, I am interested in inquiring about the following filter:\n\n*Filter:* ${productName}\n*Part Number:* ${partNumber}`;
     const encodedText = encodeURIComponent(text);
-    window.open(`https://wa.me/966560043676?text=${encodedText}`, "_blank");
+    window.open(`${site.contact.whatsapp}?text=${encodedText}`, "_blank");
   };
 
   // Handle local inquiry submit
@@ -100,11 +100,11 @@ export default function Home() {
     if (!inquiryName) return;
 
     const text = lang === "ar"
-      ? `مرحباً أدفانس تيك، أود طلب تسعيرة بالبيانات التالية:\n\n*الاسم:* ${inquiryName}\n*أرقام القطع:* ${inquiryParts || 'غير محدد'}\n*التفاصيل:* ${inquiryMessage || 'لا يوجد'}`
-      : `Hello ADVANCE TECH, I would like to request a quotation with the following details:\n\n*Name:* ${inquiryName}\n*Part Numbers:* ${inquiryParts || 'Not specified'}\n*Details:* ${inquiryMessage || 'None'}`;
+      ? `مرحباً ${site.brandName}، أود طلب تسعيرة بالبيانات التالية:\n\n*الاسم:* ${inquiryName}\n*أرقام القطع:* ${inquiryParts || 'غير محدد'}\n*التفاصيل:* ${inquiryMessage || 'لا يوجد'}`
+      : `Hello ${site.brandName}, I would like to request a quotation with the following details:\n\n*Name:* ${inquiryName}\n*Part Numbers:* ${inquiryParts || 'Not specified'}\n*Details:* ${inquiryMessage || 'None'}`;
       
     const encodedText = encodeURIComponent(text);
-    window.open(`https://wa.me/966560043676?text=${encodedText}`, "_blank");
+    window.open(`${site.contact.whatsapp}?text=${encodedText}`, "_blank");
 
     setInquirySubmitted(true);
     setTimeout(() => {
@@ -152,7 +152,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
           {/* Circular logo link */}
           <a href="#home" onClick={handleLogoClick} className="hover:opacity-90 transition-opacity">
-            <Logo size={42} />
+            <Logo size={42} brandName={site.brandName} subtitle={site.logoSubtitle} />
           </a>
           
           {/* Header Navigation Links */}
@@ -757,7 +757,7 @@ export default function Home() {
       <footer className="bg-zinc-950 text-zinc-500 py-16 px-4 sm:px-6 lg:px-8 text-xs border-t border-zinc-900">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <a href="#home" onClick={handleLogoClick} className="hover:opacity-90 transition-opacity">
-            <Logo size={42} showText={true} textColor="light" />
+            <Logo size={42} showText={true} textColor="light" brandName={site.brandName} subtitle={site.logoSubtitle} />
           </a>
           
           <div className="flex gap-6 text-zinc-400 font-bold uppercase tracking-wider text-[10px]">

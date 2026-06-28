@@ -1,6 +1,7 @@
 export const siteConfigEn = {
   name: "ADVANCE TECH",
   brandName: "ADVANCE TECH",
+  logoSubtitle: "Filtration Solutions",
   tagline: "Premium Automotive & Industrial Filtration Solutions",
   description: "Official supplier of high-quality automotive, heavy equipment, and industrial filters under ADVANCE TECH (Advanced Option Trading Co.).",
   
@@ -8,7 +9,7 @@ export const siteConfigEn = {
     phone: "+966 56 004 3676",
     formattedPhone: "+966 56 004 3676",
     email: "Sales@advanced-option.com",
-    whatsapp: "https://wa.me/966560043676",
+    whatsapp: "https://wa.me/966531567791",
   },
   
   address: {
@@ -203,6 +204,7 @@ export const siteConfigEn = {
 export const siteConfigAr = {
   name: "أدفانس تيك",
   brandName: "أدفانس تيك",
+  logoSubtitle: "حلول الفلاتر",
   tagline: "حلول تصفية السيارات والمعدات الصناعية المتميزة",
   description: "المورد الرسمي للفلاتر عالية الجودة للسيارات والمعدات الثقيلة والفلاتر الصناعية تحت العلامة التجارية أدفانس تيك (شركة الخيار المتقدم للتجارة).",
   
@@ -210,7 +212,7 @@ export const siteConfigAr = {
     phone: "+966 56 004 3676",
     formattedPhone: "+966 56 004 3676",
     email: "Sales@advanced-option.com",
-    whatsapp: "https://wa.me/966560043676",
+    whatsapp: "https://wa.me/966531567791",
   },
   
   address: {

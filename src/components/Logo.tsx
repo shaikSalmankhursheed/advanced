@@ -6,14 +6,16 @@ interface LogoProps {
   size?: number;
   showText?: boolean;
   textColor?: "dark" | "light";
+  brandName?: string;
+  subtitle?: string;
 }
 
-export function Logo({ className = "", size = 40, showText = true, textColor = "dark" }: LogoProps) {
+export function Logo({ className = "", size = 40, showText = true, textColor = "dark", brandName = "ADVANCE TECH", subtitle = "Filtration Solutions" }: LogoProps) {
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
       <Image
         src="/logo.png"
-        alt="Advance Tech"
+        alt={brandName}
         width={size}
         height={size}
         className="shrink-0 object-contain"
@@ -26,10 +28,10 @@ export function Logo({ className = "", size = 40, showText = true, textColor = "
               textColor === "dark" ? "text-slate-950" : "text-white"
             }`}
           >
-            ADVANCE TECH
+            {brandName}
           </span>
           <span className="text-[9px] uppercase font-bold tracking-widest text-red-650">
-            Filtration Solutions
+            {subtitle}
           </span>
         </div>
       )}
