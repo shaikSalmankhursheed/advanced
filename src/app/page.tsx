@@ -25,7 +25,8 @@ import {
   Globe
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import Image from "next/image";
+import filtersImg from "@/assets/filters.png";
 export default function Home() {
   const [lang, setLang] = useState<"en" | "ar">("en");
   const [searchQuery, setSearchQuery] = useState("");
@@ -187,7 +188,14 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative pt-16 pb-24 md:py-32 overflow-hidden bg-gradient-to-b from-zinc-50 to-white border-b border-zinc-200">
+      <section id="home" className="relative pt-16 pb-24 md:py-32 overflow-hidden bg-white border-b border-zinc-200">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
+          <Image src={filtersImg} alt="Advance Tech Filtration" fill priority className="object-cover object-center" />
+          <div className="absolute inset-0 bg-white/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/40 to-white"></div>
+        </div>
+
         {/* Subtle grid background mask */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:2.5rem_2.5rem] opacity-30 pointer-events-none" />
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-red-600/5 rounded-full blur-[120px] pointer-events-none" />
@@ -227,8 +235,15 @@ export default function Home() {
       </section>
 
       {/* Services / Solutions Section (Concept: "OUR SOLUTIONS" in Solid Black Background) */}
-      <section id="solutions" className="py-24 bg-zinc-950 text-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="solutions" className="py-24 bg-zinc-950 text-white relative overflow-hidden">
+        {/* Decorative Background Image */}
+        <div className="absolute inset-0 opacity-70 pointer-events-none">
+          <Image src={filtersImg} alt="Advance Tech Filters Range" fill className="object-cover object-center opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950"></div>
+          <div className="absolute inset-0 bg-zinc-950/30"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Heading */}
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
@@ -458,10 +473,22 @@ export default function Home() {
           {filteredProducts.map((product, index) => (
             <div 
               key={product.id}
-              className={`bg-white border border-zinc-200 hover:border-red-600/30 rounded-xl p-6 flex-col justify-between hover:shadow-xl hover:shadow-red-650/5 transition-all group duration-300 ${!isMobileExpanded && index >= 1 ? 'hidden md:flex' : 'flex'}`}
+              className={`bg-white border border-zinc-200 hover:border-red-600/30 rounded-xl overflow-hidden flex-col justify-between hover:shadow-xl hover:shadow-red-650/5 transition-all group duration-300 ${!isMobileExpanded && index >= 1 ? 'hidden md:flex' : 'flex'}`}
             >
-              <div>
-                <div className="flex justify-between items-start gap-2 mb-3">
+              <div className="flex-1 flex flex-col">
+                {/* Product Image Section */}
+                {'image' in product && product.image ? (
+                  <div className="w-full h-56 bg-zinc-50 flex items-center justify-center p-4 relative border-b border-zinc-100 overflow-hidden shrink-0">
+                    <img src={product.image as string} alt={product.name} className="w-full h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                ) : (
+                  <div className="w-full h-56 bg-zinc-50 flex items-center justify-center relative border-b border-zinc-100 shrink-0">
+                    <Filter className="w-12 h-12 text-zinc-200" />
+                  </div>
+                )}
+                
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex justify-between items-start gap-2 mb-3">
                   <span className="px-2.5 py-0.5 text-[11px] font-bold bg-zinc-100 text-zinc-700 rounded border border-zinc-200">
                     {site.categories.find(c => c.id === product.category)?.name}
                   </span>
@@ -497,10 +524,11 @@ export default function Home() {
                     {product.oemCompatibility}
                   </div>
                 </div>
+                </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="grid grid-cols-2 gap-3 mt-6 border-t border-zinc-100 pt-4">
+              <div className="grid grid-cols-2 gap-3 mt-auto border-t border-zinc-100 p-6 pt-4">
                 <Button 
                   size="sm" 
                   variant="outline" 
@@ -798,6 +826,13 @@ export default function Home() {
 
             {/* Modal Body */}
             <div className="p-6 overflow-y-auto space-y-6 flex-1 text-sm">
+              
+              {/* Product Image in Modal */}
+              {'image' in selectedProduct && selectedProduct.image && (
+                <div className="w-full h-64 bg-white rounded-lg flex items-center justify-center p-4 border border-zinc-200 shadow-inner">
+                  <img src={selectedProduct.image as string} alt={selectedProduct.name} className="max-w-full max-h-full object-contain drop-shadow-xl" />
+                </div>
+              )}
               <div>
                 <h4 className="text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-1.5">{t.descTitle}</h4>
                 <p className="text-zinc-650 leading-relaxed">{selectedProduct.description}</p>

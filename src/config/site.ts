@@ -110,26 +110,28 @@ export const siteConfigEn = {
   products: [
     {
       id: "sf-101",
-      name: "Premium Air Filter AF-401",
+      name: "Air Filter 4216035170",
       category: "air",
-      partNumber: "SF-AF401-2026",
-      oemCompatibility: "Toyota Land Cruiser (2018-2024), Lexus LX570",
+      partNumber: "4216035170",
+      oemCompatibility: "Universal Heavy Duty",
       description: "High-efficiency air filtration designed to block 99.7% of desert dust, sand, and fine particles, extending engine life in harsh climates.",
+      image: "/products/image2.jpg",
       specifications: {
         Material: "Advanced Synthetic Fiber",
         Efficiency: "99.7%",
-        Dimensions: "310mm x 220mm x 55mm",
+        Dimensions: "Standard",
         Lifespan: "15,000 km"
       },
       inStock: true
     },
     {
       id: "sf-102",
-      name: "Heavy-Duty Spin-On Oil Filter OF-909",
-      category: "oil",
-      partNumber: "SF-OF909-HD",
-      oemCompatibility: "Hyundai Elantra, Accent, Kia Sportage (1.6L, 2.0L)",
-      description: "Designed with heavy-duty steel casing and premium silicone anti-drainback valve to withstand extreme engine temperatures.",
+      name: "Fuel/Water Separator FS20246",
+      category: "fuel",
+      partNumber: "FS20246",
+      oemCompatibility: "Commercial Trucks & Equipment",
+      description: "Advanced fuel/water separator ensuring clean fuel delivery to your engine by trapping rust, dirt, and water impurities.",
+      image: "/products/image5.jpg",
       specifications: {
         FilterMedia: "Synthetic Blend",
         MaxPressure: "20 bar",
@@ -145,6 +147,7 @@ export const siteConfigEn = {
       partNumber: "SF-CF305-AC",
       oemCompatibility: "Nissan Patrol (2015-2025), Infiniti QX80",
       description: "Activated carbon filter that purifies air entering the cabin. Effectively filters out dust, exhaust fumes, pollen, and unpleasant odors.",
+      image: "/products/cf305.png",
       specifications: {
         Material: "Activated Carbon + Electrostatic Fiber",
         DeodorizationRate: ">95%",
@@ -155,11 +158,12 @@ export const siteConfigEn = {
     },
     {
       id: "sf-104",
-      name: "High-Flow Fuel Filter FF-202",
+      name: "Fuel Filter 5095694",
       category: "fuel",
-      partNumber: "SF-FF202-HI",
-      oemCompatibility: "Toyota Hilux, Fortuner Diesel (2016-2024)",
+      partNumber: "5095694",
+      oemCompatibility: "Diesel Engines",
       description: "Ensures clean fuel delivery to your engine by trapping rust, dirt, and water impurities, preventing fuel injector wear.",
+      image: "/products/image1.jpg",
       specifications: {
         FiltrationRating: "5 microns",
         Media: "Meltblown Cellulose",
@@ -170,30 +174,32 @@ export const siteConfigEn = {
     },
     {
       id: "sf-105",
-      name: "Industrial Hydraulic Filter HF-800",
+      name: "Industrial Hydraulic Filter G02567Q",
       category: "hydraulic",
-      partNumber: "SF-HF800-IND",
+      partNumber: "G02567Q",
       oemCompatibility: "CAT Heavy Duty Excavators, JCB Backhoes",
       description: "High-pressure hydraulic filter built for heavy machinery operating in dusty construction and oilfield environments.",
+      image: "/products/image3.jpg",
       specifications: {
         MaxFlowRate: "120 L/min",
         MaxWorkingPressure: "210 bar",
         Material: "Microglass Fiber",
         Lifespan: "500 operating hours"
       },
-      inStock: false
+      inStock: true
     },
     {
       id: "sf-106",
-      name: "Synthetic Cabin Air Filter CF-310",
-      category: "cabin",
-      partNumber: "SF-CF310-STD",
-      oemCompatibility: "Toyota Camry (2018-2024), RAV4",
-      description: "Standard particulate filter protecting the air conditioning system and cabin interior from desert sand and dust particles.",
+      name: "Cross Reference Filter 5000481",
+      category: "fuel",
+      partNumber: "5000481",
+      oemCompatibility: "Universal",
+      description: "Standard particulate filter protecting the system from desert sand and dust particles.",
+      image: "/products/image4.jpg",
       specifications: {
-        Material: "Melt-blown Polypropylene",
+        Material: "Pleated Cellulose",
         Efficiency: "92%",
-        Dimensions: "215mm x 194mm x 29mm",
+        Dimensions: "Standard",
         Lifespan: "10,000 km"
       },
       inStock: true
@@ -313,26 +319,28 @@ export const siteConfigAr = {
   products: [
     {
       id: "sf-101",
-      name: "فلتر هواء مميز AF-401",
+      name: "فلتر هواء 4216035170",
       category: "air",
-      partNumber: "SF-AF401-2026",
-      oemCompatibility: "تويوتا لاندكروزر (2018-2024)، لكزس LX570",
+      partNumber: "4216035170",
+      oemCompatibility: "معدات ثقيلة عامة",
       description: "فلتر هواء عالي الكفاءة مصمم لحجب 99.7% من غبار الصحراء والرمل والجسيمات الدقيقة، مما يطيل عمر المحرك في المناخات القاسية.",
+      image: "/products/image2.jpg",
       specifications: {
         "المادة": "ألياف صناعية متطورة",
         "الكفاءة": "99.7%",
-        "الأبعاد": "310 مم × 220 مم × 55 مم",
+        "الأبعاد": "قياسي",
         "العمر الافتراضي": "15,000 كم"
       },
       inStock: true
     },
     {
       id: "sf-102",
-      name: "فلتر زيت شديد التحمل OF-909",
-      category: "oil",
-      partNumber: "SF-OF909-HD",
-      oemCompatibility: "هيونداي إلنترا، أكسنت، كيا سبورتاج (1.6 لتر، 2.0 لتر)",
-      description: "مصمم بهيكل فولاذي شديد التحمل وصمام مانع للرجوع من السيليكون الممتاز ليتحمل درجات حرارة المحرك القصوى.",
+      name: "فاصل ماء/وقود FS20246",
+      category: "fuel",
+      partNumber: "FS20246",
+      oemCompatibility: "شاحنات ومعدات تجارية",
+      description: "فاصل ماء ووقود متطور يضمن توصيل وقود نظيف لمحركك عن طريق حجز الصدأ والأوساخ.",
+      image: "/products/image5.jpg",
       specifications: {
         "وسيط الفلترة": "مزيج اصطناعي",
         "أقصى ضغط": "20 بار",
@@ -348,6 +356,7 @@ export const siteConfigAr = {
       partNumber: "SF-CF305-AC",
       oemCompatibility: "نيسان باترول (2015-2025)، إنفينيتي QX80",
       description: "فلتر كربون نشط ينقي الهواء الداخل إلى المقصورة. يصفي بفعالية الغبار وأبخرة العادم وحبوب اللقاح والروائح الكريهة.",
+      image: "/products/cf305.png",
       specifications: {
         "المادة": "كربون نشط + ألياف إلكتروستاتيكية",
         "معدل إزالة الروائح": "أكثر من 95%",
@@ -358,11 +367,12 @@ export const siteConfigAr = {
     },
     {
       id: "sf-104",
-      name: "فلتر وقود عالي التدفق FF-202",
+      name: "فلتر وقود 5095694",
       category: "fuel",
-      partNumber: "SF-FF202-HI",
-      oemCompatibility: "تويوتا هايلوكس، فورتشنر ديزل (2016-2024)",
+      partNumber: "5095694",
+      oemCompatibility: "محركات الديزل",
       description: "يضمن توصيل وقود نظيف لمحركك عن طريق حجز الصدأ والأوساخ وشوائب الماء، مما يمنع تآكل حاقن الوقود.",
+      image: "/products/image1.jpg",
       specifications: {
         "درجة الفلترة": "5 ميكرون",
         "المادة": "سلولوز مصهور",
@@ -373,30 +383,32 @@ export const siteConfigAr = {
     },
     {
       id: "sf-105",
-      name: "فلتر هيدروليك صناعي HF-800",
+      name: "فلتر هيدروليك صناعي G02567Q",
       category: "hydraulic",
-      partNumber: "SF-HF800-IND",
+      partNumber: "G02567Q",
       oemCompatibility: "حفارات كاتربيلر الثقيلة، رافعات جي سي بي",
       description: "فلتر هيدروليكي عالي الضغط مخصص للمعدات الثقيلة التي تعمل في بيئات البناء وحقول النفط المغبرة.",
+      image: "/products/image3.jpg",
       specifications: {
         "أقصى تدفق": "120 لتر/دقيقة",
         "أقصى ضغط تشغيلي": "210 بار",
         "المادة": "ألياف زجاجية دقيقة",
         "العمر الافتراضي": "500 ساعة تشغيل"
       },
-      inStock: false
+      inStock: true
     },
     {
       id: "sf-106",
-      name: "فلتر مكيف اصطناعي CF-310",
-      category: "cabin",
-      partNumber: "SF-CF310-STD",
-      oemCompatibility: "تويوتا كامري (2018-2024)، راف فور",
-      description: "فلتر مكيف هواء قياسي يحمي مقصورة الركاب ونظام التكييف من رمال الصحراء وجزيئات الغبار.",
+      name: "فلتر بديل 5000481",
+      category: "fuel",
+      partNumber: "5000481",
+      oemCompatibility: "عام",
+      description: "فلتر قياسي يحمي النظام من رمال الصحراء وجزيئات الغبار.",
+      image: "/products/image4.jpg",
       specifications: {
-        "المادة": "بولي بروبيلين مصهور",
+        "المادة": "سليلوز مطوي",
         "الكفاءة": "92%",
-        "الأبعاد": "215 مم × 194 مم × 29 مم",
+        "الأبعاد": "قياسي",
         "العمر الافتراضي": "10,000 كم"
       },
       inStock: true

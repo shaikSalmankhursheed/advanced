@@ -13,13 +13,11 @@ interface LogoProps {
 export function Logo({ className = "", size = 40, showText = true, textColor = "dark", brandName = "ADVANCE TECH", subtitle = "Filtration Solutions" }: LogoProps) {
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
-      <Image
+      <img
         src="/logo.png"
         alt={brandName}
-        width={size}
-        height={size}
+        style={{ width: size, height: size }}
         className="shrink-0 object-contain"
-        priority
       />
       {showText && (
         <div className="flex flex-col leading-none">
